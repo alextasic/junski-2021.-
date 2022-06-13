@@ -1,4 +1,29 @@
 .divCelogPrikazaProdavnice{
+    display: flex;
     flex:auto;
+    flex-direction: row;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 10%;
+    margin: 20px;
+}
+.divUnos{
+    display: flex;
     flex-direction: column;
+    width:50%;
+    background-color: aquamarine;
+
+}
+.divPrikaz{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    background-color: aquamarine;
+    flex-wrap: wrap;
+    min-width: 300px;
+}
+@media only screen and (max-width: 900px) {
+    .divCelogPrikazaProdavnice {
+        flex-direction: column;
+    }
 }
