@@ -65,18 +65,23 @@ namespace Template.Controllers
 
         }
 
-        [Route("MenadzerPorucuje/{idProdavnice}/{idSastojka}")]
+        [Route("MenadzerPorucuje/{idProdavnice}/{stringIDevaSastojka}")]
         [HttpPut]
-        public async Task<ActionResult> MenadzerPorucuje(int idProdavnice,int idSastojka){
+        public async Task<ActionResult> MenadzerPorucuje(int idProdavnice,string stringIDevaSastojka){
 
+          foreach(char elem in stringIDevaSastojka){
+
+            if (elem!='a') {
+            int idSastojka = elem-'0';////////////konvertovanje chara u int
             var nadjeniProdavnicaSastojak=await Context.ProdavnicaSastojak.Where(p=>p.Prodavnica.ID==idProdavnice && p.Sastojak.ID==idSastojka).FirstAsync();
             nadjeniProdavnicaSastojak.Kolicina+=300;
             Context.ProdavnicaSastojak.Update(nadjeniProdavnicaSastojak);
             await Context.SaveChangesAsync();
-            return Ok("azurirana vrednost u bazi "+ idSastojka);
+            }
+          }
+
+            return Ok("azurirana vrednost u bazi ");
         }
-
-
     }
 }
 /*
